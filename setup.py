@@ -5,7 +5,11 @@ ext_modules = [
     Extension(
         "core/**/*",
         ["core/**/*.pyx"],
-        extra_compile_args=["-std=c++20", "-I", "core/PokeFinder/Source"],
+        extra_compile_args=[
+            "-std=c++20",
+            "-I",
+            "core/PokeFinder/Source",
+        ],
         extra_link_args=["-std=c++20", "-I", "core/PokeFinder/Source"],
     )
 ]

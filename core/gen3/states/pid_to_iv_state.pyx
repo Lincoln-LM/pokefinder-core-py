@@ -12,10 +12,8 @@ cdef class PyPIDToIVState:
         memcpy(self.state_ptr, &state_ptr, sizeof(PIDToIVState))
 
     def get_ivs(self):
-        cdef list ivs = []
-        for iv in self.state_ptr.getIVs():
-            ivs.append(iv)
-        return ivs
+        cdef array_u8_6 ivs = self.state_ptr.getIVs()
+        return [iv for iv in ivs]
 
     def get_seed(self):
         return self.state_ptr.getSeed()
