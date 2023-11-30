@@ -23,4 +23,4 @@ jobs:
           source emsdk_env.sh
 
       - name: Build 
-        run: emcc -v
+        run: bash build_flet.sh
