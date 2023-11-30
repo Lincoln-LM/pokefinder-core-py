@@ -20,7 +20,11 @@ jobs:
           version: "3.1.45"
           actions-cache-folder: "emsdk-cache"
       - name: Build 
-        run: bash build_flet.sh
+        run: |
+          bash build_flet.sh
+          cd examples/dist
+          mkdir examples
+          mv !(examples) examples
       - name: Upload Site Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -30,4 +34,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./examples/dist
+          folder: ./examples
