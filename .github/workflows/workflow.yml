@@ -20,6 +20,7 @@ jobs:
         run: |
           emsdk install $(pyodide config get emscripten_version)
           emsdk activate $(pyodide config get emscripten_version)
+          source emsdk_env.sh
 
-      - name: Verify
+      - name: Build 
         run: emcc -v
