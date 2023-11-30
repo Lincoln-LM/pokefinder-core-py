@@ -1,0 +1,11 @@
+name: "emsdk"
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mymindstorm/setup-emsdk@v13
+
+      - name: Verify
+        run: emcc -v
