@@ -18,5 +18,16 @@ jobs:
       - uses: mymindstorm/setup-emsdk@v13
         with:
           version: "3.1.45"
+          actions-cache-folder: "emsdk-cache"
       - name: Build 
         run: bash build_flet.sh
+      - name: Upload Site Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pages-build
+          path: examples/dist
+      - name: Deploy Github Pages
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./examples/dist
