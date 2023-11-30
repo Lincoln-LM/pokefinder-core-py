@@ -24,6 +24,7 @@ jobs:
           bash build_flet.sh
           cd examples/dist
           mkdir examples
+          shopt -s extglob
           mv !(examples) examples
       - name: Upload Site Artifact
         uses: actions/upload-artifact@v3
