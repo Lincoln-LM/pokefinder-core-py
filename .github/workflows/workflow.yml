@@ -18,6 +18,8 @@ jobs:
       - name: Debug Statement
         run: echo $(pyodide config get emscripten_version)
       - uses: mymindstorm/setup-emsdk@v13
+        with:
+          version: ${{env.EM_VERSION}}
 
       - name: Verify
         run: emcc -v
