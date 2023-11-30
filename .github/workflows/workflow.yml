@@ -15,12 +15,6 @@ jobs:
         run: pip install pyodide-build flet
       - uses: mymindstorm/setup-emsdk@v13
         with:
-          no-install: true
-      - name: Install emsdk
-        run: |
-          emsdk install $(pyodide config get emscripten_version)
-          emsdk activate $(pyodide config get emscripten_version)
-          source emsdk_env.sh
-
+          version: "3.1.45"
       - name: Build 
         run: bash build_flet.sh
