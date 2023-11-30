@@ -13,13 +13,13 @@ jobs:
           python-version: "3.11"
       - name: Install Dependencies
         run: pip install pyodide-build flet
-      - name: Set Emscripten Version
-        run: EM_VERSION=$(pyodide config get emscripten_version)
-      - name: Debug Statement
-        run: echo $(pyodide config get emscripten_version)
       - uses: mymindstorm/setup-emsdk@v13
         with:
-          version: ${{env.EM_VERSION}}
+          no-install: true
+      - name: Install emsdk
+        run: |
+          emsdk install $(pyodide config get emscripten_version)
+          emsdk activate $(pyodide config get emscripten_version)
 
       - name: Verify
         run: emcc -v
