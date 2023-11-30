@@ -1,10 +1,22 @@
 name: "emsdk"
 on: [push, pull_request, workflow_dispatch]
-
+permissions:
+  contents: write
 jobs:
   build:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install Dependencies
+        run: pip install pyodide-build flet
+      - name: Set Emscripten Version
+        run: EM_VERSION=$(pyodide config get emscripten_version)
+      - name: Debug Statement
+        run: echo $(pyodide config get emscripten_version)
       - uses: mymindstorm/setup-emsdk@v13
 
       - name: Verify
